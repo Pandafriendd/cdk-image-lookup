@@ -10,8 +10,11 @@ from aws_cdk import core
 
 from cdk_image_lookup_py.cdk_image_lookup_py_stack import CdkImageLookupPyStack
 
+import os
 
 app = cdk.App()
-CdkImageLookupPyStack(app, "cdk-image-lookup-py")
+CdkImageLookupPyStack(app, "cdk-image-lookup-py", env=core.Environment(
+    account=os.environ["CDK_DEFAULT_ACCOUNT"],
+    region=os.environ["CDK_DEFAULT_REGION"]))
 
 app.synth()
